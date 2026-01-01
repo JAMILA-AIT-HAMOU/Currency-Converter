@@ -1,0 +1,12 @@
+
+
+body{
+  background-color:rgb(144, 181, 134);
+  margin:0;
+  min-height:83vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  
+}
