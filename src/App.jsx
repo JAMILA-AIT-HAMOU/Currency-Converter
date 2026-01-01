@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import './App.css'
 
 function App() {
@@ -10,6 +10,7 @@ export function CurrencyConverter() {
     const [amount, setAmount]=useState(1)
     const [startCurrency, setStartCurrency]=useState("MAD")
     const [targetCurrency, setTargetCurrency]=useState("USD")
+    const [shine, setShine]=useState(false)
 
 
 
@@ -38,6 +39,13 @@ export function CurrencyConverter() {
     const result= baseAmount * rates[targetCurrency]
 
 
+
+    useEffect(()=>{
+        setShine(true)
+        const timer= setTimeout(()=>setShine(false), 1000)
+        return ()=>clearTimeout(timer)
+      
+    },[result])
    
 
 
@@ -69,7 +77,7 @@ export function CurrencyConverter() {
           </select>
         </label>
         
-          <p className="pop">Converted Amount: {result.toFixed(2)} {targetCurrency}</p>
+          <p className="pop">Converted Amount:<span className={`pop ${shine ? "shine":""}`}> {result.toFixed(2)} {targetCurrency}</span></p>
     
       </form>
 
